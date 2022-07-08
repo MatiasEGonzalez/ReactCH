@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import NavBar from './componets/NavBar/NavBar'
+
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const estilosApp = {backgroundColor: 'red'}
   return (
-    <div className="App">
+   
+    <div className='App' style = {estilosApp}>
       <header className="App-header">
+        <div>
+          <NavBar />
+        </div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + Pacho!</p>
         <p>
