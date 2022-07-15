@@ -31,8 +31,9 @@ const NavBar = (props) => {
             
           </Nav>
           
+          <Cartwidget />
         </Navbar.Collapse>
-        <Cartwidget />
+        
       </Container>
     </Navbar>
   );
