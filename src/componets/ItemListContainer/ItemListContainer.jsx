@@ -42,8 +42,42 @@ const ItemListContainer = ({ saludar }) => {
                             lead-in to additional content. This content is a little bit
                             longer.
                           </Card.Text>
+                          <ItemCount  initial={1} stock={20} onAdd={onAdd} />
                         </Card.Body>
                     </Card>                   
+                  
+                </Row>
+                <Row className="g-3 w-25  m-3 row">                    
+                      <Card className="col-sm">
+                      <Card.Title>{`${producto.curso}`}</Card.Title>
+                        <Card.Img variant="top" src={`${producto.foto}`} className="w-25"/>
+                        <Card.Body>                          
+                          <Card.Text>
+                            This is a longer card with supporting text below as a natural
+                            lead-in to additional content. This content is a little bit
+                            longer.
+                          </Card.Text>
+                          <ItemCount  initial={1} stock={20} onAdd={onAdd} />
+                        </Card.Body>
+                    </Card>                   
+                  
+                </Row>
+                <Row className="g-3 w-25  m-3 row">                    
+                      <Card className="col-sm">
+                      <Card.Title>{`${producto.curso}`}</Card.Title>
+                        <Card.Img variant="top" src={`${producto.foto}`} className="w-25"/>
+                        <Card.Body>                          
+                          <Card.Text>
+                            This is a longer card with supporting text below as a natural
+                            lead-in to additional content. This content is a little bit
+                            longer.
+                            
+                          </Card.Text>
+                          <ItemCount  initial={1} stock={20} onAdd={onAdd} />
+                        </Card.Body>
+                      
+                    </Card>    
+                                   
                   
                 </Row>
               </div>
@@ -56,7 +90,7 @@ const ItemListContainer = ({ saludar }) => {
             //<li key={producto.id}>{producto.curso}</li>)
           }
               
-          <ItemCount  initial={1} stock={20} onAdd={onAdd} />
+          
       </div>
       
     )
