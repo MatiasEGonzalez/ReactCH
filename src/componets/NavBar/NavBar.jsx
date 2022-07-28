@@ -1,6 +1,6 @@
 import React from 'react'
 import Cartwidget from './Cartwidget/Cartwidget';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -14,9 +14,9 @@ const NavBar = (props) => {
     <Navbar bg="light" expand="lg" >
       <Container fluid>
         <Link to='/'>
-            Ecommerce MatiasGZ
+            <Navbar.Brand href="#"><img src='/Imagenes/logoE.jpeg' alt="logo" className='w-50'/></Navbar.Brand>
         </Link>
-        <Navbar.Brand href="#"><img src='/Imagenes/logoE.jpeg' alt="logo" className='w-50'/></Navbar.Brand>
+        
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -24,11 +24,11 @@ const NavBar = (props) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">INICIO</Nav.Link>
-            <Nav.Link href="#action1">CURSOS </Nav.Link>
-            <Nav.Link href="#action1">CONTACTO</Nav.Link>
-            <Nav.Link href="#action1">TRABAJA CON NOSOTROS</Nav.Link>
-            <Nav.Link href="#action2">QUIENES SOMOS</Nav.Link>
+            <NavLink to='/'  className='m-2'>INICIO </NavLink>
+            <NavLink to='/list' className='m-2'>CURSOS </NavLink>
+            <NavLink to='/' className='m-2'>CONTACTO </NavLink>
+            <NavLink to='/' className='m-2'>TRABAJA CON NOSOTROS </NavLink>
+            <NavLink to='/' className='m-2'>QUIENES SOMOS </NavLink>
             
           </Nav>
           <Link to='/Cart'>
