@@ -18,7 +18,7 @@ const ItemListContainer = ({ saludar }) => {
     }, [])
 
     
-    console.log(productos)
+    
 
     return (
       <div >

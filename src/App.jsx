@@ -1,33 +1,47 @@
-
-
+import { BrowserRouter, Routes, Route } from  'react-router-dom'
 
 import NavBar from './componets/NavBar/NavBar'
 import ItemListContainer from './componets/ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './componets/ItemDetailContainer/ItemDetailContainer'
+import Cart from './componets/NavBar/Cartwidget/Cart/Cart'
 
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 
 function App() {
   
 
   return (
-   
-    <div className='App' >
+   <BrowserRouter>
+      
+      <div className='App' >
       <header className="App-header">
-        <div>
-        
-        <NavBar />
-        
-        <ItemListContainer saludar={'Contador del Item List Container'} />
-        
+          <NavBar />
+          <Routes>
           
 
-        </div>
-        
-      </header>
-     
-    </div>
+           
+            
+                <Route path='/list' element={<ItemListContainer /> } />
+                <Route path='/detalle' element={<ItemDetailContainer /> } />
+                <Route path='/cart' element={<Cart /> } />
+                
+                
+                
+
+               
+                    
+
+            
+            
+          
+          </Routes>
+          </header>
+      </div>
+   
+   </BrowserRouter>
   )
 }
 
