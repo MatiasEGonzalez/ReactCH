@@ -1,14 +1,14 @@
 import React from 'react'
-import ItemCount from "../ItemCount/ItemCount"
+
+import { Link } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
 
-const onAdd = (cant) => {
-  console.log(`la cantidad es: ${cant}`)
-}
+
+
 
 const Item = ({productos}) => {
   return (
@@ -22,8 +22,10 @@ const Item = ({productos}) => {
                         Some quick example text to build on the card title and make up the
                         bulk of the card's content.
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                        <ItemCount initial={1} stock={10} onAdd={onAdd} />
+                        <Link to={`/detalle/${productos.id}`}>
+                           <Button variant="primary">detalle</Button>
+                        </Link>
+                        
                     </Card.Body>
                     
                     </Card>

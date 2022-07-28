@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useEffect } from "react"
 import { getFetch } from "../../../helpers/getFetch"
-
+import ItemCount from "../ItemCount/ItemCount"
 import ItemList from "../ItemList/ItemList";
 
 
@@ -17,7 +17,9 @@ const ItemListContainer = ({ saludar }) => {
       .finally(()=> setLoading(false))
     }, [])
 
-    
+    const onAdd = (cant) => {
+      console.log(`la cantidad es: ${cant}`)
+    }
     
 
     return (
@@ -31,7 +33,7 @@ const ItemListContainer = ({ saludar }) => {
             <ItemList productos={productos} />
             }
     
-          
+        <ItemCount initial={1} stock={10} onAdd={onAdd} />
         </div>
       )
     }

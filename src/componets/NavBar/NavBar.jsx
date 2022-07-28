@@ -1,10 +1,9 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
+import Cartwidget from './Cartwidget/Cartwidget';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Cartwidget from './Cartwidget/Cartwidget';
 
 const NavBar = (props) => {
 
@@ -14,7 +13,9 @@ const NavBar = (props) => {
   
     <Navbar bg="light" expand="lg" >
       <Container fluid>
-        
+        <Link to='/'>
+            Ecommerce MatiasGZ
+        </Link>
         <Navbar.Brand href="#"><img src='/Imagenes/logoE.jpeg' alt="logo" className='w-50'/></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -30,8 +31,9 @@ const NavBar = (props) => {
             <Nav.Link href="#action2">QUIENES SOMOS</Nav.Link>
             
           </Nav>
-          
-          <Cartwidget />
+          <Link to='/Cart'>
+            <Cartwidget />
+          </Link>
         </Navbar.Collapse>
         
       </Container>
