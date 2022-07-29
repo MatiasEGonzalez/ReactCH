@@ -23,11 +23,11 @@ function App() {
           <NavBar />
           <Routes>
           
-
+                <Route path='/categoria/:categoriaId' element={<ItemListContainer /> } />
            
             
                 <Route path='/list' element={<ItemListContainer /> } />
-                <Route path='/detalle/:Id' element={<ItemDetailContainer /> } />
+                <Route path='/detalle/:detalleId' element={<ItemDetailContainer /> } />
                 <Route path='/cart' element={<Cartwidget /> } />
                 
               
