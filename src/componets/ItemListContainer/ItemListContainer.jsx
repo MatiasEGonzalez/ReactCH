@@ -29,9 +29,7 @@ const ItemListContainer = ({ saludar }) => {
 
     }, [categoriaId])
 
-    const onAdd = (cant) => {
-      console.log(`la cantidad es: ${cant}`)
-    }
+    
     console.log(categoriaId)
 
     return (
@@ -45,7 +43,7 @@ const ItemListContainer = ({ saludar }) => {
             <ItemList productos={productos} />
             }
     
-        <ItemCount initial={1} stock={10} onAdd={onAdd} />
+        
         </div>
       )
     }

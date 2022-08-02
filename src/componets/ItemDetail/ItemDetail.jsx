@@ -1,9 +1,14 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import ItemCount from '../ItemCount/ItemCount';
 
 
 const ItemDetail = ({producto}) => {
+
+  const onAdd = (cant) => {
+    console.log(`la cantidad es: ${cant}`)
+  }
   
   return (
     <Card className="text-center" style={{ width: '40rem' }}>
@@ -29,6 +34,7 @@ const ItemDetail = ({producto}) => {
         </Card.Text>
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
+      <ItemCount initial={1} stock={10} onAdd={onAdd}/>
       <Card.Footer className="text-muted">2 days ago</Card.Footer>
     </Card>
 
