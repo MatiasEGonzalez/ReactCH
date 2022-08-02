@@ -27,12 +27,12 @@ const NavBar = (props) => {
             navbarScroll
           >
             <NavLink to='/'  className='m-2 nav-link'>INICIO </NavLink>
-            <NavLink to='/list' className='m-2 nav-link'>CURSOS </NavLink>
+            
             <NavLink to='/' className='m-2 nav-link'>CONTACTO </NavLink>
             <NavLink to='/' className='m-2 nav-link'>POSTULATE</NavLink>
             <NavLink to='/' className='m-2 nav-link'>QUIENES SOMOS </NavLink>
             
-            <NavDropdown title="Cursos" id="basic-nav-dropdown">
+            <NavDropdown title="Cursos" id="basic-nav-dropdown" className='m-1 nav-link'>
 
               
               <NavDropdown.Item  ><NavLink to='/categoria/Idiomas' className='m-2 nav-link'>Idiomas </NavLink></NavDropdown.Item>

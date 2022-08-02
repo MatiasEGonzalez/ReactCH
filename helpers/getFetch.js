@@ -23,12 +23,12 @@ let productos = [
   return new Promise (( resolve, reject)=>{
       setTimeout(()=>{
         if (id) {
-          resolve(productos.find(productos = productos.id === id))
+          resolve(productos.find(producto => producto.id === id))
       }else{
         resolve(productos)
       }
 
-      }, 1000)
+    }, 1000)
       
   })
 }
