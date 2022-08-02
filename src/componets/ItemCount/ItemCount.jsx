@@ -13,11 +13,17 @@ const ItemCount = ({ initial=1 , stock=10 , onAdd }) => {
         setCount(count - 1)
       }
      }
+
+     const handleAddToCart = () => {
+      onAdd(count)
+     }
   return (
-    <div className='card w-25 bg-transparent rounded-pill margen' >
+    <div className='card w-50 h-25 bg-transparent m-3' >
         <button className='btn-xs btn-outline-success rounded-pill' onClick={sumar}> + </button>
         <label>{ count }</label>
         <button className='btn-xs btn-outline-danger rounded-pill' onClick={restar}> - </button>
+        <br />
+        <button className='btn btn-outline-success' onClick={handleAddToCart}>Agregar al Carrito</button>
     </div>
   )
 }

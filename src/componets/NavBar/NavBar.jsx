@@ -16,7 +16,9 @@ const NavBar = (props) => {
     <Navbar bg="light" expand="lg" >
       <Container fluid>
         <Link to='/'>
-            <Navbar.Brand href="#"><img src='/Imagenes/logoE.jpeg' alt="logo" className='w-50'/></Navbar.Brand>
+            <Navbar.Brand href="#">
+              <img src='/Imagenes/logoE.jpeg' alt="logo" className='w-50'/>
+            </Navbar.Brand>
         </Link>
         
         <Navbar.Toggle aria-controls="navbarScroll" />

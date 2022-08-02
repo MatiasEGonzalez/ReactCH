@@ -9,6 +9,8 @@ import ItemDetailContainer from './componets/ItemDetailContainer/ItemDetailConta
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Cartwidget from './componets/NavBar/Cartwidget/Cartwidget'
+import CartContextProvider from './Context/CartContext'
+
 
 
 
@@ -17,34 +19,25 @@ function App() {
 
   return (
    <BrowserRouter>
-      
-      <div className='App' >
-      <header className="App-header">
-          <NavBar />
-          <Routes>
-          
-                <Route path='/categoria/:categoriaId' element={<ItemListContainer /> } />
-           
-            
-                <Route path='/list' element={<ItemListContainer /> } />
-                <Route path='/detalle/:detalleId' element={<ItemDetailContainer /> } />
-                <Route path='/cart' element={<Cartwidget /> } />
-                
+      <CartContextProvider>
+          <div className='App' >
+          <header className="App-header">
+              <NavBar />
+              <Routes>
               
+                    <Route path='/categoria/:categoriaId' element={<ItemListContainer /> } />
                 
-                
-
-               
+                    <Route path='/list' element={<ItemListContainer /> } />
+                    <Route path='/detalle/:detalleId' element={<ItemDetailContainer /> } />
+                    <Route path='/cart' element={<Cartwidget /> } />
                     
-
-            
-            
-          
-          </Routes>
-          </header>
-      </div>
-   
+                  
+              </Routes>
+              </header>
+          </div>
+      </CartContextProvider>      
    </BrowserRouter>
+   
   )
 }
 

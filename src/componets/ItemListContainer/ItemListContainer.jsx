@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
 
 import { getFetch } from "../../../helpers/getFetch"
-import ItemCount from "../ItemCount/ItemCount"
+
 import ItemList from "../ItemList/ItemList";
 
 
