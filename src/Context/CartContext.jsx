@@ -12,15 +12,21 @@ export const useCartContext = () => useContext(CartContext)
     const [cartList, setCartList] = useState ([])
 
     const agregarCarrito = (prod) =>{
-        setCartList ([
+        setCartList([
             ...cartList,
             prod
         ])
     }
+
+    const vaciarCarrito = () => {
+        setCartList([])
+    }
+
     return(
         <CartContext.Provider value={{
             cartList,
-            agregarCarrito
+            agregarCarrito,
+            vaciarCarrito
         }}>
             { children }
         </CartContext.Provider>

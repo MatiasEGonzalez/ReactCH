@@ -23,7 +23,7 @@ const ItemCount = ({ initial=1 , stock=10 , onAdd }) => {
         <label>{ count }</label>
         <button className='btn-xs btn-outline-danger rounded-pill' onClick={restar}> - </button>
         <br />
-        <button className='btn btn-outline-success' onClick={handleAddToCart}>Agregar al Carrito</button>
+        <button className='btn btn-outline-success' onClick={handleAddToCart} >Agregar al Carrito</button>
     </div>
   )
 }

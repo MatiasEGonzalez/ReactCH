@@ -32,12 +32,18 @@ const ItemListContainer = ({ saludar }) => {
     
     console.log(categoriaId)
 
+    const Loading = () => {
+        return <h1>Cargando ..</h1> 
+    }
+
+  
+
     return (
       <div >
         { saludar }
         
           { loading ? 
-            <h1>Cargando ..</h1> 
+             <Loading />
             : 
             
             <ItemList productos={productos} />

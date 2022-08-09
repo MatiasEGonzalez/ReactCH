@@ -10,6 +10,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Cartwidget from './componets/NavBar/Cartwidget/Cartwidget'
 import CartContextProvider from './Context/CartContext'
+import Cart from './componets/NavBar/Cartwidget/Cart/Cart'
 
 
 
@@ -29,8 +30,8 @@ function App() {
                 
                     <Route path='/list' element={<ItemListContainer /> } />
                     <Route path='/detalle/:detalleId' element={<ItemDetailContainer /> } />
-                    <Route path='/cart' element={<Cartwidget /> } />
-                    
+                    <Route path='/cart' element={<Cart /> } />         
+                                   
                   
               </Routes>
               </header>
