@@ -10,7 +10,9 @@ import ItemList from "../ItemList/ItemList";
 const ItemListContainer = ({ saludar }) => {
     const [ productos, setProductos ] = useState([])
     const [ loading, setLoading ] = useState(true)
-
+    const [ bool, setBool ] = useState(true)
+    //const [ productos, setProductos ] = useState([])
+    
     const { categoriaId } = useParams()
 
       useEffect(()=>{
@@ -29,6 +31,18 @@ const ItemListContainer = ({ saludar }) => {
 
     }, [categoriaId])
 
+
+    //Agregar Producto
+    const agregarProducto = () =>{
+      setProductos([
+        ...productos,
+        { id: productos.length + 1,
+          curso: 'Nuevos cursos',
+          categoria: 'programacion y desarrollo',
+          precio: 2000
+        }
+      ])
+    }
     
     console.log(categoriaId)
 
@@ -41,6 +55,8 @@ const ItemListContainer = ({ saludar }) => {
     return (
       <div >
         { saludar }
+        
+        <button onClick={agregarProducto}>Agregar Producto</button>
         
           { loading ? 
              <Loading />

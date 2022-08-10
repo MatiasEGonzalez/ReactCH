@@ -1,9 +1,11 @@
 import { useCartContext } from '../../../../Context/CartContext'
 
+
+
 const Cart = () => {
-
+ 
     const { cartList, vaciarCarrito } = useCartContext()
-
+    console.log(cartList)
     return (
         <div>
             <h1>Carrito</h1>
@@ -19,17 +21,23 @@ const Cart = () => {
                       
                       <br />
                       Total: ${item.cantidad * item.precio}
+                     
                     </div>
-                  </li>                 
+                    <button>X</button>
+                  </li>
+
+
                   
               ))}
             </ul>
             <button onClick={vaciarCarrito}>Vaciar Carrito</button>
             
-
+            
+            
+                  
         </div>
       
-    
+   
     
     )
        
