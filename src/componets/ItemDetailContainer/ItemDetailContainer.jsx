@@ -1,3 +1,4 @@
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getFetch } from '../../../helpers/getFetch'
@@ -13,11 +14,18 @@ const ItemDetailContainer = () => {
 
   //getFetch(detalleId)
 
-  useEffect(()=>{
-      getFetch(detalleId)
-      .then(respuesta => setProducto(respuesta))
+    ////TRAER UN PRODUCTO POR AD --> itemDetailContainer
+    useEffect(()=>{
+    const db = getFirestore()
+    const queryProducto = doc(db, 'productos', 'RtgUtPgykIfcGjXfP79E')
+    getDoc (queryProducto)
+    .then(response => setProducto( { id: response.id, ...response.data() } ) )
+    }, [])
 
-  }, [])
+  //useEffect(()=>{
+      //getFetch(detalleId)
+      //.then(respuesta => setProducto(respuesta))
+  //}, [])
   //console.log(producto)
   return (
     <div>
