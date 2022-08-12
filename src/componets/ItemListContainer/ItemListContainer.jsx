@@ -14,13 +14,7 @@ const ItemListContainer = ({ saludar }) => {
     
     const { categoriaId } = useParams()
     
-    ////TRAER UN PRODUCTO POR AD --> itemDetailContainer
-    //useEffect(()=>{
-    //  const db = getFirestore()
-    //  const queryProducto = doc(db, 'productos', 'RtgUtPgykIfcGjXfP79E')
-    //  getDoc(queryProducto)
-    //  .then(response => setProducto( { id: response.id, ...response.data() } ) )
-    //}, [])
+  
 
 
     ////TRAER todos los productos 

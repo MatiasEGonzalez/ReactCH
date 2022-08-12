@@ -7,18 +7,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Cart from './Cartwidget/Cart/Cart';
 import Cartwidget from './Cartwidget/Cartwidget';
+import { useCartContext } from '../../Context/CartContext';
 
 
 const NavBar = (props) => {
 
-  const estilosNav = {backgroundColor: 'black', listStyle: 'none'}
-  const li = {display: 'inline-block', padding: '10px', color: 'white'}
+  const { cantidadTotal } = useCartContext()
   return (
   
     <Navbar bg="light" expand="lg" >
       <Container fluid>
         <Link to='/'>
-            <Navbar.Brand href="#">
+            <Navbar.Brand >
               <img src='/Imagenes/logoE.jpeg' alt="logo" className='w-50'/>
             </Navbar.Brand>
         </Link>
@@ -47,8 +47,11 @@ const NavBar = (props) => {
             </NavDropdown>
             
           </Nav>
-          <Link to='/Cart'>
+          <Link to='/Cart' >
+            <div className="d-flex justify-content-end ">
             <Cartwidget />
+            {cantidadTotal() != 0 && cantidadTotal()}
+            </div>
           </Link>
         </Navbar.Collapse>
         
