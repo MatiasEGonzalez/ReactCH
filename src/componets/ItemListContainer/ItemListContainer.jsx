@@ -113,7 +113,7 @@ const ItemListContainer = ({ saludar }) => {
       ])
     }
     
-    console.log(categoriaId)
+   
 
     const Loading = () => {
         return <h1>Cargando ..</h1> 

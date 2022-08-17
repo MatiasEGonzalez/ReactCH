@@ -60,7 +60,7 @@ const ItemDetail = ({producto}) => {
           <Link to={'/cart'}>
             <button className='btn btn-outline-success m-5'>Terminar Compra</button>
           </Link>
-          <Link to={'/'}>
+          <Link to={'/list'}>
             <button className='btn btn-outline-primary m-3'>Seguir comprando</button>
           </Link>
          </>

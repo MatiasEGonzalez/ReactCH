@@ -17,7 +17,7 @@ const ItemDetailContainer = () => {
     ////TRAER UN PRODUCTO POR AD --> itemDetailContainer
     useEffect(()=>{
     const db = getFirestore()
-    const queryProducto = doc(db, 'productos', 'bFliuNNteZW3rFFCIG4R')
+    const queryProducto = doc(db, 'productos', detalleId)
     getDoc (queryProducto)
     .then(response => setProducto( { id: response.id, ...response.data() } ) )
     }, [])

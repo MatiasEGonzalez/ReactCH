@@ -10,13 +10,13 @@ const Cart = () => {
     console.log(cartList)
     return (
       <>
-      {cartList.length == 0 ? 
-
-            
+      {cartList.length == 0 ?             
 
         <Card className="text-center mx-auto" style={{ width: '10rem' }}>
         <CardHeader>No tenes nada en tu carrito aun</CardHeader>
-        <button className="btn-outline-light" style={{ borderRadius:"12px", backgroundColor: "#FF9F50", color: "white", margin:"5px", outlineColor:"white" }}><Link to="/list" style={{  color: "white" }}>Ir a comprar</Link></button>
+        <button className="btn-outline-light" style={{ borderRadius:"12px", backgroundColor: "#FF9F50", color: "white", margin:"5px", outlineColor:"white" }}>
+            <Link to="/list" style={{  color: "white" }}>Ir a comprar</Link>
+        </button>
         </Card>
         
         :
@@ -51,16 +51,14 @@ const Cart = () => {
                     <h3>${precioTotal()}</h3>
                     
                 </Card>
-                <button className="btn-outline-light" onClick={vaciarCarrito} style={{ borderRadius:"12px", backgroundColor: "#FF9F99", color: "white", margin:"5px", outlineColor:"white" }}>Vaciar Carrito</button>
-                
-                
+                <button className="btn-outline-light" onClick={vaciarCarrito} style={{ borderRadius:"12px", backgroundColor: "#FF9F99", color: "white", margin:"5px", outlineColor:"white" }}>
+                    Vaciar Carrito
+                </button>
+                                
                 <br/>
-                <br/>
-                
+                <br/>                
             </div>
-            }            
-      
-   
+            }
         </>
     )
        
