@@ -30,7 +30,7 @@ const NavBar = (props) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <NavLink to='/'  className='m-2 nav-link'>INICIO </NavLink>
+            <NavLink to='/list'  className='m-2 nav-link'>INICIO </NavLink>
             
             <NavLink to='/' className='m-2 nav-link'>CONTACTO </NavLink>
             <NavLink to='/' className='m-2 nav-link'>POSTULATE</NavLink>

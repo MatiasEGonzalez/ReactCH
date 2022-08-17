@@ -46,6 +46,8 @@ export const useCartContext = () => useContext(CartContext)
 
     
 
+    
+
     return(
         <CartContext.Provider value={{
             cartList,
@@ -54,6 +56,7 @@ export const useCartContext = () => useContext(CartContext)
             precioTotal,
             cantidadTotal,
             eliminarProducto
+            
         }}>
             { children }
         </CartContext.Provider>

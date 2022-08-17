@@ -47,18 +47,29 @@ const ItemListContainer = ({ saludar }) => {
 
 
     useEffect(()=>{
+      if (categoriaId) {
       const db = getFirestore()
       const queryCollection = collection(db, 'productos')
       const queryFiltrada = query(queryCollection, 
-        where ('categoria','==', 'Idiomas'),
+        where ('categoria','==', categoriaId),
         
         )
       getDocs(queryFiltrada)
-      .then(response =>  setProductos( response.docs.map(productos=> ( { id: productos.id, ...productos.data() } ) )))
+      .then(response =>  setProductos( response.docs.map(productos=> ( { id: productos.id, ...productos.data() } ))))
       .catch( error => console.log(error))
       .finally(()=> setLoading(false)) 
-    }, [])
+    } else {
+      const db = getFirestore()
+      const queryCollection = collection(db, 'productos')
+      getDocs(queryCollection)
+      .then(response =>  setProductos( response.docs.map(productos=> ( { id: productos.id, ...productos.data() } ))))
+      .catch( error => console.log(error))
+      .finally(()=> setLoading(false)) 
+    }
 
+
+       
+  }, [categoriaId])
     console.log(productos)
 
 
