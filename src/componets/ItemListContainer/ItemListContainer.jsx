@@ -71,19 +71,6 @@ const ItemListContainer = ({ saludar }) => {
        
   }, [categoriaId])
     console.log(productos)
-
-
-
-
-
-
-
-
-
-
-
-
-
     
      // useEffect(()=>{
      //   if (categoriaId) {

@@ -9,7 +9,7 @@ const ItemDetailContainer = () => {
   const [producto, setProducto] = useState({})
   const {detalleId} = useParams()  //  ESTO ME RETORNA UN OBJ
   
-  console.log(detalleId)
+  
 
 
   //getFetch(detalleId)

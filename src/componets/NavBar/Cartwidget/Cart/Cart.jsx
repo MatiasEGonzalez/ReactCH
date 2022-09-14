@@ -3,68 +3,198 @@ import CardHeader from 'react-bootstrap/esm/CardHeader'
 import { Link } from 'react-router-dom'
 import { useCartContext } from '../../../../Context/CartContext'
 
+import { addDoc, collection, doc, documentId, getDocs, getFirestore, query, updateDoc, where, writeBatch } from "firebase/firestore"
+import { useState } from "react"
+
 
 const Cart = () => {
- 
-    const { cartList, vaciarCarrito, precioTotal, eliminarProducto } = useCartContext()
-    console.log(cartList)
-    return (
-      <>
-      {cartList.length == 0 ?             
+    const [ id, setId ] = useState('')
 
-        <Card className="text-center mx-auto" style={{ width: '10rem' }}>
-        <CardHeader>No tenes nada en tu carrito aun</CardHeader>
+    const [formData, setFormData] = useState({
+        email:'', 
+        name:'', 
+        phone:'',
+        rEmail:''
+    })
+
+    const { cartList, vaciarCarrito, eliminarProducto, precioTotal } = useCartContext()
+   
+
+
+    const guardarOrden = async (e) => {
+        e.preventDefault()
+
+
+        const order = {}
+        order.buyer = {email:'f@gmail.com', name:'fede', phone:'321321321'}
+        order.buyer = formData
+
+
+        order.items = cartList.map(prod => {
+            return {
+
+                producto: prod.curso,
+                id: prod.id,
+                precio: prod.precio
+            }
+        })
+        
+        order.total = precioTotal()
+
+
+        const db = getFirestore()
+        const queryOrders = collection(db, 'orders')
+        addDoc(queryOrders, order)        
+        .then(resp => setId(resp.id))
+        .catch(err => console.log(err))
+        .finally(()=> setFormData({
+                email:'', 
+                name:'', 
+                phone:'',
+                rEmail:''
+            })
+        )
+
+
+        const queryCollectionStock = collection(db, 'productos')
+
+        const queryActulizarStock = query(
+            queryCollectionStock,                  
+            where( documentId() , 'in', cartList.map(it => it.id) )        
+        )
+        const batch = writeBatch(db)
+
+        await getDocs(queryActulizarStock)
+        
+         .then(resp => resp.docs.forEach(res => batch.update(res.ref, {
+             stock: res.data().stock - cartList.find(item => item.id === res.id).cantidad
+         }) ))
+         .catch(err => console.log(err))
+        .finally(()=> vaciarCarrito())
+        .finally(()=> {
+            vaciarCarrito()            
+        })
+        batch.commit()
+
+
+    }    
+    const handleChange = (e) => {
+        
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+    
+    return (
+
+       <>
+      {(cartList.length || id.length) == 0 ?             
+
+        <Card className="text-center mx-auto m-5" style={{ width: '10rem' }}>
+        <CardHeader >Aun no tienes nada en el Carrito</CardHeader>
         <button className="btn-outline-light" style={{ borderRadius:"12px", backgroundColor: "#FF9F50", color: "white", margin:"5px", outlineColor:"white" }}>
             <Link to="/list" style={{  color: "white" }}>Ir a comprar</Link>
         </button>
         </Card>
         
         :
-        <div>
-            <h1>CARRITO</h1>
-            <ul>
-                {cartList.map( item => (
-                  <div key={item.id}>                            
-                            <Card className="text-center mx-auto" style={{ width: '40rem' }}>
-                                <Row>
-                                <Col>
-                                    <img src={item.foto} width="230" height="230" style={{ margin: '8px' }}/>
-                                </Col>
-                                <Col style={{ marginRight: '30px' }}>
-
-                                    <br/><CardHeader >{item.curso}</CardHeader>
-
-                                    <br/>{`Cantidad: ${item.cantidad}`}
-
-                                    <div style={{ marginTop: '5px' }}>{`Precio: ${item.precio}`}</div>
-                                    <br/>
-                                    <button onClick={() => eliminarProducto(item.id)}>Eliminar Producto</button>                                   
-                                </Col>
-                                </Row>                              
-                            </Card>  
-                        </div>
-                    ))}  
-                </ul>
-                
-                <Card className="text-center mx-auto" style={{ width: '10rem' }}>
-                    <CardHeader>TOTAL</CardHeader>
-                    <h3>${precioTotal()}</h3>
-                    
-                </Card>
-                <button className="btn-outline-light" onClick={vaciarCarrito} style={{ borderRadius:"12px", backgroundColor: "#FF9F99", color: "white", margin:"5px", outlineColor:"white" }}>
-                    Vaciar Carrito
-                </button>
+        
+        <div className="row">
+            <h1>Carrito</h1>
+            <div className="col-8">
+                {id.length > 0 && <h2>El id de su orden es:  {id}</h2> }
+                <div className="w-100">                    
+                        {cartList.map(producto => (
+                            <div key={producto.id}>
                                 
-                <br/>
-                <br/>                
+                                <img src={producto.foto} alt="Foto de producto" style={{ width: 100 }} />
+                               
+                                nombre: {producto.curso} - cantidad: {producto.cantidad} - Precio: {producto.precio} - Subtotal: {producto.cantidad * producto.precio}
+                                <button onClick={ () => eliminarProducto(producto.id) }> X </button>
+                            </div>
+                        ))}
+                    
+                </div>
+                <div>
+                    <h6>  { precioTotal() !== 0 && `Precio Total: ${ precioTotal() }`} </h6>
+                    
+                    <button onClick={vaciarCarrito}>Vaciar carrito</button>
+                </div>
             </div>
-            }
-        </>
-    )
-       
-      
-   
-  
+            <div className="col-4">
+
+                <form 
+                    onSubmit={ guardarOrden }
+                    
+                    className="p-2 w-75 border border-2 border-warning rounded" 
+                >
+                    <label className="ml-0 alert alert-warning">Formulario con sus validaciones</label>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Nombre</label>
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            name="name"                            
+                            placeholder="Ingrese el nombre" 
+                            onChange={handleChange}
+                            value={formData.name}
+                        />                        
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Phone</label>
+                        <input 
+                            type="Email"
+                            type="text"
+                            className="form-control" 
+                            name="phone" 
+                           
+                            onChange={handleChange}
+                            placeholder="Ingrese el teléfono"
+                            value={formData.phone}
+                             />                        
+                    </div>
+                    <div className="form-group">
+
+                    <label htmlFor="exampleInputEmail1">Email</label>
+                        <input 
+                        type="email" 
+                        className="form-control" 
+                        name="email" 
+                       
+                        onChange={handleChange}
+                        placeholder="Enter email" 
+                        value={formData.email}
+                    />
+                    
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Repetir Email</label>
+                    <input 
+                        type="email" 
+                        className="form-control" 
+                        name="rEmail"                            
+                        placeholder="Enter email" 
+                        onChange={handleChange}
+                        value={formData.rEmail}
+                    />
+                </div>
+                <div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                    
+                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+
+            </form>
+
+        </div>    
+    </div>
+}
+  </>
+)
 }
 
 export default Cart
+
+

@@ -17,7 +17,7 @@ const NavBar = (props) => {
   
     <Navbar bg="light" expand="lg" >
       <Container fluid>
-        <Link to='/'>
+        <Link to='/list'>
             <Navbar.Brand >
               <img src='/Imagenes/logoE.jpeg' alt="logo" className='w-50'/>
             </Navbar.Brand>
