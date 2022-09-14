@@ -19,7 +19,7 @@ const NavBar = (props) => {
       <Container fluid>
         <Link to='/list'>
             <Navbar.Brand >
-              <img src='../../..Imagenes/logoE.jpeg' alt="logo" className='w-50'/>
+              <img src='../../../..Imagenes/logoE.jpeg' alt="logo" className='w-50'/>
             </Navbar.Brand>
         </Link>
         
